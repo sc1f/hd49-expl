@@ -56,7 +56,11 @@ def candidate_page(candidate_id=None):
 @app.route('/')
 def navigation_page():
 	context = {'navigation_json_link': url_for('static', 
-		                                       filename='js/navigation.json')}
+		                                       filename='js/navigation.json'),
+				'global_css_link': url_for('static', 
+					                           filename='css/global.css'),
+				'cover_image_link': url_for('static',
+					                           filename='images/cover.jpg')}
 	return render_template('navigation.html', **context)
 
 if __name__ == '__main__': app.run(debug = True)
