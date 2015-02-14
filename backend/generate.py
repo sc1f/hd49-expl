@@ -3,16 +3,11 @@ import copytext
 from application import app
 
 import settings
-from make_navigation import make_navigation
-from localize_assets import download_images
 
 def generate():
-	make_navigation(settings.copy_sheet_location, settings.web_app_location, 
-		            settings.static_files_location)
-	download_images(settings.static_files_location, settings.copy_sheet_location)
-
 	app.config['FREEZER_DESTINATION'] = settings.web_app_location
 	app.config['FREEZER_IGNORE_MIMETYPE_WARNINGS'] = True
+	app.config['FREEZER_RELATIVE_URLS'] = True
 
 	freezer = Freezer(app)
 

@@ -6,6 +6,8 @@ import urllib2
 from bs4 import BeautifulSoup
 
 import settings
+from make_navigation import make_navigation
+from localize_assets import download_images
 
 app = Flask(__name__, static_folder=settings.static_files_location, 
 	        template_folder=settings.template_folders_location)
@@ -43,6 +45,9 @@ for sheetName in copy.sheetNames():
 
 		candidates[candidateId] = candidateContext
 
+make_navigation(settings.copy_sheet_location, settings.web_app_location, 
+		            settings.static_files_location)
+download_images(settings.static_files_location, settings.copy_sheet_location)
 
 @app.route('/candidates/<candidate_id>')
 def candidate_page(candidate_id=None):
