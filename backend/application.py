@@ -45,7 +45,7 @@ for sheetName in copy.sheetNames():
 			'year': row['Year'].unescape(),
 			'json': json.dumps(data, ensure_ascii=False, separators=(',', ':'))
 		}
-		candidates[(row['Candidate Name'].unescape() + row['Major'].unescape() + row['Year'].unescape()).replace(" ", "_")] = candidateContext
+		candidates[(row['Candidate Name'].unescape() + row['Major'].unescape() + row['Year'].unescape()).replace(" ", "_").replace("/", "_")] = candidateContext
 
 
 @app.route('/candidates/<candidate_id>')

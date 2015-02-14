@@ -20,7 +20,7 @@ def generate():
 		for sheetName in copy.sheetNames():
 			if sheetName == 'metadata': continue
 			for row in copy[sheetName]:
-				yield {"candidate_id": (row['Candidate Name'].unescape() + row['Major'].unescape() + row['Year'].unescape()).replace(" ", "_")}
+				yield {"candidate_id": (row['Candidate Name'].unescape() + row['Major'].unescape() + row['Year'].unescape()).replace(" ", "_").replace("/", "_")}
 				# yield '/candidates/' + (row['Candidate Name'].unescape() + row['Major'].unescape() + row['Year'].unescape()).replace(" ", "_")
 	
 	freezer.freeze()
