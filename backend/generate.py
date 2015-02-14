@@ -12,8 +12,8 @@ def generate():
 	download_images(settings.static_files_location, settings.copy_sheet_location)
 
 	app.config['FREEZER_DESTINATION'] = settings.web_app_location
-	app.debug = True
-	app.testing = True
+	app.config['FREEZER_IGNORE_MIMETYPE_WARNINGS'] = True
+
 	freezer = Freezer(app)
 
 	copy = copytext.Copy(settings.copy_sheet_location)
