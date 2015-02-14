@@ -2,3 +2,4 @@
 .DS_Store
 web_app/
 static/images/candidate_headshots
+static/js/navigation.json
