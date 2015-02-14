@@ -58,7 +58,7 @@ def candidate_page(candidate_id=None):
 	context['headshot_photo_url'] = candidatePhotoUrl
 	context['candidate_styling'] = url_for('static', filename='css/candidate.css')
 	context['cover_image_link'] = url_for('static',
-					                      filename='images/cover.jpg')
+					                      filename='images/cover_candidate.jpg')
 
 	return render_template('candidate.html', **context)
 
