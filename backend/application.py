@@ -23,8 +23,11 @@ for sheetName in copy.sheetNames():
 		for i in xrange(len(titles)):
 			dtCoverage.append({'title':titles[i], 'link':links[i]})
 
+		candidateId = (row['Candidate Name'].unescape() + row['Major'].unescape() + row['Year'].unescape()).replace(" ", "_").replace("/", "_")
+		candidatePhotoUrl = os.path.join('static', 'images', 'candidate_headshots', candidateId)
+
 		candidateContext = {
-			'headshot_photo_url': row['Photo URL'].unescape(),
+			'headshot_photo_url': candidatePhotoUrl,
 			'headshot_photo_credit': row['Photo Credit'].unescape(),
 			'candidate_name': row['Candidate Name'].unescape(),
 			'major': row['Major'].unescape(),
@@ -35,7 +38,7 @@ for sheetName in copy.sheetNames():
 			'campaign_website': row['Campaign Website'].unescape(),
 			'dt_coverage': dtCoverage
 		}
-		candidates[(row['Candidate Name'].unescape() + row['Major'].unescape() + row['Year'].unescape()).replace(" ", "_").replace("/", "_")] = candidateContext
+		candidates[candidateId] = candidateContext
 
 
 @app.route('/candidates/<candidate_id>')
