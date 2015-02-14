@@ -34,7 +34,7 @@ def make_navigation(copy_sheet_location, web_app_location, static_files_location
 			candidateId = (row['Candidate Name'].unescape() + row['Major'].unescape() + row['Year'].unescape()).replace(" ", "_").replace("/", "_")
 			candidate['photo_url'] = os.path.join('static', 'images', 'candidate_headshots', candidateId)
 			candidate['position'] = row['Position'].unescape()
-			candidate['detail_page_url'] = 'candidates/' + 
+			candidate['detail_page_url'] = 'candidates/' + candidateId
 			candidate['detail_page_url'].replace(" ", "_").replace('/', '_')
 			arrayToAddTo.append(candidate)
 

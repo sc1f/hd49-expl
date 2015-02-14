@@ -12,13 +12,14 @@ def download_images(static_files_location, copy_sheet_location):
 		if name == 'metadata':
 			continue
 		for row in copy[name]:
-			candidateId = row['Candidate Name'].unescape() + row['Major'].unescape() + row['Year'].unescape()).replace(" ", "_").replace("/", "_")
-			destination = os.path.join(destination, candidateId)
-			download(row['Photo URL'].unescape(), destination)
+			if row['Photo URL'] != "":
+				candidateId = (row['Candidate Name'].unescape() + row['Major'].unescape() + row['Year'].unescape()).replace(" ", "_").replace("/", "_")
+				destinationForPhoto = os.path.join(destination, candidateId)
+				download(row['Photo URL'].unescape(), destinationForPhoto)
 
 def download(url, destination):
 	page = urllib2.urlopen(url)
 	content = page.read()
 	page.close()
-	with f as open(destination + url.split('.')[-1], 'wb'):
+	with open(destination + '.' + url.split('.')[-1], 'wb') as f:
 		f.write(content)
