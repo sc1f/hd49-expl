@@ -15,27 +15,13 @@ for sheetName in copy.sheetNames():
 		continue
 	for row in copy[sheetName]:
 
-		data = {}
-
-		if row['Statement'].unescape() == "":
-			data['statement'] = "The Daily Texan has no statement on file for this candidate"
-		else:
-			data['statement'] = row['Statement'].unescape()
-
-		data['campaign_platform_points'] = []
-
-		for point in row['Campaign Platform Points'].unescape().split('|||'):
-			data['campaign_platform_points'].append(point)
-
-		data['twitter_feed_url'] = row['Twitter Feed URL'].unescape()
-		data['campaign_website'] = row['Campaign Website'].unescape()
-		data['DT Coverage'] = []
+		dtCoverage = []
 
 		links = row['Daily Texan Coverage URLs'].unescape().split('|||')
 		titles = row['Daily Texan Coverage Titles'].unescape().split('|||')
 
 		for i in xrange(len(titles)):
-			data['DT Coverage'].append({'title':titles[i], 'link':links[i]})
+			dtCoverage.append({'title':titles[i], 'link':links[i]})
 
 		candidateContext = {
 			'headshot_photo_url': row['Photo URL'].unescape(),
@@ -43,7 +29,11 @@ for sheetName in copy.sheetNames():
 			'candidate_name': row['Candidate Name'].unescape(),
 			'major': row['Major'].unescape(),
 			'year': row['Year'].unescape(),
-			'json': json.dumps(data, ensure_ascii=False, separators=(',', ':'))
+			'statement': "The Daily Texan has no statement on file for this candidate" if row['Statement'].unescape() == "" else row['Statement'].unescape(),
+			'campaign_platform_points': row['Campaign Platform Points'].unescape().split('|||'),
+			'twitter_feed_url': row['Twitter Feed URL'].unescape(),
+			'campaign_website': row['Campaign Website'].unescape(),
+			'dt_coverage': dtCoverage
 		}
 		candidates[(row['Candidate Name'].unescape() + row['Major'].unescape() + row['Year'].unescape()).replace(" ", "_").replace("/", "_")] = candidateContext
 
