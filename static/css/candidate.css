@@ -3,12 +3,13 @@
 	position: absolute;
 	top: 0px;
 	margin-left: 5px;
-
+	max-width: 30%;
+	word-wrap: break-word;
 }
 
 #headshotContainer {
+	max-width:70%;
 	display: inline-block;
-
 }
 
 #dtCoverage a {
