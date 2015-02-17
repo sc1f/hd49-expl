@@ -16,26 +16,25 @@ def make_navigation(copy_sheet_location, web_app_location, static_files_location
 		objectToAdd['purpose_paragraph'] = copy['metadata'][name]['purpose'].unescape()
 		objectToAdd['categories'] = {}
 		for row in copy[name]:
-			objectToAdd['categories'][row['Category'].unescape()] = {"candidates": {"subcategories":{},
-			                                                                        "visibility_of_subcategories":"hidden"}}
+			objectToAdd['categories'][row['Category'].unescape()] = {"subcategories":{},
+			                                                         "visibility_of_subcategories":"hidden"}
 
-		
 		for row in copy[name]:
-			candidates = objectToAdd['categories'][row['Category'].unescape()]['candidates']
+			subcategories = objectToAdd['categories'][row['Category'].unescape()]['subcategories']
 			if (row['Subcategory'].unescape() != ""):
-				candidates['visibility_of_subcategories'] = "visible"
-			candidates['subcategories'][row['Subcategory'].unescape()] = []
+				objectToAdd['categories'][row['Category'].unescape()]['visibility_of_subcategories'] = "visible"
+			subcategories[row['Subcategory'].unescape()] = {'candidates':[],
+			                                                'numPositions': int(row['Category Number'].unescape())}
 
 		for row in copy[name]:
-			candidates = objectToAdd['categories'][row['Category'].unescape()]['candidates']
-			arrayToAddTo = candidates['subcategories'][row['Subcategory'].unescape()]
+			subcategories = objectToAdd['categories'][row['Category'].unescape()]['subcategories']
+			arrayToAddTo = subcategories[row['Subcategory'].unescape()]['candidates']
 			candidate = {}
 			candidate['Name'] = row['Candidate Name'].unescape()
 			candidateId = (row['Candidate Name'].unescape() + row['Major'].unescape() + row['Year'].unescape()).replace(" ", "_").replace("/", "_")
-			candidate['photo_url'] = os.path.join('static', 'images', 'candidate_headshots', candidateId)
+			candidate['photo_url'] = os.path.join('static', 'images', 'candidate_headshots', candidateId) + '.jpg'
 			candidate['position'] = row['Position'].unescape()
 			candidate['detail_page_url'] = 'candidates/' + candidateId
-			candidate['detail_page_url'].replace(" ", "_").replace('/', '_')
 			arrayToAddTo.append(candidate)
 
 		data[initials] = objectToAdd

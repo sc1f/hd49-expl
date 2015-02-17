@@ -2,6 +2,7 @@ import copytext
 import json
 from flask import Flask, render_template, url_for
 import os
+import sys
 import urllib2
 from bs4 import BeautifulSoup
 
@@ -28,6 +29,12 @@ for sheetName in copy.sheetNames():
 		for i in xrange(len(titles)):
 			dtCoverage.append({'title':titles[i], 'link':links[i]})
 
+		try:
+			campaign_website_title = BeautifulSoup(urllib2.urlopen(row['Campaign Website'].unescape())).title.string if len(row['Campaign Website'].unescape()) != 0 else ""
+		except:
+			print str(row['Campaign Website'].unescape()) + ": ERROR! - " + str(sys.exc_info()[0])
+			campaign_website_title = row['Candidate Name'].unescape() + " Campaign Website"
+
 		candidateContext = {
 			'headshot_photo_credit': row['Photo Credit'].unescape(),
 			'candidate_name': row['Candidate Name'].unescape(),
@@ -38,7 +45,7 @@ for sheetName in copy.sheetNames():
 			'twitter_feed_url': row['Twitter Feed URL'].unescape(),
 			'twitter_user_name': row['Twitter Feed URL'].unescape().split('/')[-1],
 			'campaign_website': row['Campaign Website'].unescape(),
-			'campaign_website_title': BeautifulSoup(urllib2.urlopen(row['Campaign Website'].unescape())).title.string if len(row['Campaign Website']) != 0 else "",
+			'campaign_website_title': campaign_website_title,
 			'dt_coverage': dtCoverage
 		}
 		candidateId = (row['Candidate Name'].unescape() + row['Major'].unescape() + row['Year'].unescape()).replace(" ", "_").replace("/", "_")
