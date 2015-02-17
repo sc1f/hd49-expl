@@ -98,11 +98,12 @@ body {
 #header {
   position: absolute;
   top: calc(50% - 50px);
-  left: calc(50% - 385px);
+  left: calc(50% - 460px);
   color: white;
   letter-spacing: 10px;
-  font-size: 4em;
+  font-size: 3em;
   font-family: "Courier New", Courier, monospace;
+  word-break: normal;
 }
 
 #header img {
@@ -134,12 +135,16 @@ body {
   height: 140px;
 }
 
-#GSA {
+#SG {
   background-color: #E56400;
 }
 
-#TSM {
+#GSA {
   background-color: #E77319;
+}
+
+#TSM {
+  background-color: #EFA266;
 }
 
 #Unions {
@@ -150,9 +155,7 @@ body {
   background-color: #EC924C;
 }
 
-#SG {
-  background-color: #EFA266;
-}
+
 
 .toggle-title {
   text-align: center;
@@ -169,8 +172,8 @@ body {
 
 @media (max-width: 1024px) {
   #header {
-    font-size: 3.7em;
-    left: calc(50% - 300px);
+    font-size: 2.8em;
+    left: calc(50% - 430px);
   }
   #header img{
     display: none;
@@ -181,6 +184,10 @@ body {
 }
 
 @media (max-width: 1000px) {
+  #header {
+    font-size: 2.3em;
+    left: calc(50% - 380px);
+  }
   .navbar li a {
     font-size: 13px;
   }
@@ -190,6 +197,8 @@ body {
   #header {
     left: 20px;
     top: 60%;
+    font-size: 3em;
+    text-align: center;
   }
   #header img{
     display: none;
@@ -226,7 +235,10 @@ body {
 
 @media (max-width: 480px) {
   #header {
-    font-size: 3.5em;
+    font-size: 3.1em;
+    top: 50%;
+    left: 10px;
+    text-align: left;
   }
 
   #header img{

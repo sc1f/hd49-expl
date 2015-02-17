@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div class="landing">
-		<h1 id="header">CAMPUS ELECTION</h1>
+		<h1 id="header">2015 Campus Wide Elections</h1>
 		<nav class="navbar" role="navigation">
 			<div class="container">
 				<div class="navbar-header">
@@ -45,78 +45,43 @@
 		</nav>
 	</div>
 
+	<div id="SG" class="page-section collapse-group">
+		<div class="container">
+			<h2 class="toggle-title" data-toggle="collapse" data-target="#viewSG">Student Government</h2>
+			<div class="collapse" id="viewSG">
+			</div>
+		</div>
+	</div>
+
 	<div id="GSA" class="page-section collapse-group">
 		<div class="container">
-			<h2 class="toggle-title" data-toggle="collapse" data-target="#viewGSM">Graduate Student Association</h2>
-			<div class="collapse row" id="viewGSM">
-				<div class="content col-md-2 col-sm-4">
-					<img src="static/portrait.jpg" />
-					<h3>Name</h3>
-					<h5>Position</h5>
-				</div>
+			<h2 class="toggle-title" data-toggle="collapse" data-target="#viewGSM">Graduate Student Assembly</h2>
+			<div class="collapse row" id="viewGSM"></div>
+		</div>
+	</div>
 
-			</div>
+	<div id="Unions" class="page-section collapse-group">
+		<div class="container">
+			<h2 class="toggle-title" data-toggle="collapse" data-target="#viewUnions">University Unions</h2>
+			<div class="collapse" id="viewUnions"></div>
+		</div>
+	</div>
+
+	<div id="Co-op" class="page-section collapse-group">
+		<div class="container">
+			<h2 class="toggle-title" data-toggle="collapse" data-target="#viewCo-Op">University Co-op</h2>
+			<div class="collapse" id="viewCo-Op"></div>
 		</div>
 	</div>
 
 	<div id="TSM" class="page-section collapse-group">
 		<div class="container">
 			<h2 class="toggle-title" data-toggle="collapse" data-target="#viewTSM">Texas Student Media</h2>
-			<div class="collapse" id="viewTSM">
-				<div class="container">
-					<h3 class="toggle-sub" data-toggle="collapse" data-target="#viewA">SubCat1</h3>
-					<div class="collapse row" id="viewA">
-						<div class="content col-md-2 col-sm-4">
-							<img src="static/portrait.jpg" />
-							<h3>Name</h3>
-							<h5>Position</h5>
-						</div>
-					</div>
-				</div>
-				<div class="container">
-					<h3 class="toggle-sub" data-toggle="collapse" data-target="#viewB">SubCat2</h3>
-					<div class="collapse row" id="viewB">
-						<div class="content col-md-2 col-sm-4">
-							<img src="static/portrait.jpg" />
-							<h3>Name</h3>
-							<h5>Position</h5>
-						</div>
-					</div>
-				</div>
-			</div>
+			<div class="collapse" id="viewTSM"></div>
 		</div>
 	</div>
 
-	<div id="Unions" class="page-section collapse-group">
-		<div class="container">
-			<h2 class="toggle-title" data-toggle="collapse" data-target="#viewUnions">Unions</h2>
-			<div class="collapse" id="viewUnions">
-				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-			</div>
-		</div>
-	</div>
-
-	<div id="Co-op" class="page-section collapse-group">
-		<div class="container">
-			<h2 class="toggle-title" data-toggle="collapse" data-target="#viewCo-op">Co-op</h2>
-			<div class="collapse" id="viewCo-op">
-				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-			</div>
-		</div>
-	</div>
-
-	<div id="SG" class="page-section collapse-group">
-		<div class="container">
-			<h2 class="toggle-title" data-toggle="collapse" data-target="#viewSG">Student Government</h2>
-			<div class="collapse" id="viewSG">
-				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-			</div>
-		</div>
-	</div>
-
-	<div class="footer">
-
-	</div>
+	<div class="footer"></div>
 
 </body>
 </html>
@@ -178,7 +143,120 @@
 
 	d3.json("{{navigation_json_link}}", function(error, nav) {
 		if (error) return console.error(error);
+
 		console.log(nav);
 
+		s = [];
+		for (key in nav) {
+			s.push(key);
+		}
+
+		d3.selectAll(".page-section")
+		.data(s)
+		.each(function(d){
+			var p = d;
+
+			keys = [];
+			for (key in nav[p]["categories"]) {
+				keys.push(key);
+			}
+
+			var a = d3.select("#view" + p)
+			.selectAll("div")
+			.data(keys)
+			.enter().append("div")
+			.attr("class","container");
+
+			a.append("h3")
+			.attr("class", "toggle-sub")
+			.attr("data-toggle", "collapse")
+			.attr("data-target", function(d){
+				return "#view-" + d.replace(/\s+/g, '');
+			})
+			.html(function(d){
+				return d;
+			});
+
+			a.append("div")
+			.attr("class", "collapse")
+			.attr("id", function(d){
+				return "view-" + d.replace(/\s+/g, '');
+			})
+			.each(function(d){
+
+				var n = d;
+
+				k = [];
+				for (key in nav[p]["categories"][d]["subcategories"]) {
+					k.push(key);
+				}	
+
+				if(nav[p]["categories"][d]["visibility_of_subcategories"] != "hidden"){
+					
+
+					var b = d3.select("#view-"+d.replace(/\s+/g, ''))
+					.selectAll("div")
+					.data(k)
+					.enter().append("div")
+					.attr("class", "container");
+
+					b.append("h3")
+					.attr("class", "toggle-sub")
+					.attr("data-toggle", "collapse")
+					.attr("data-target", function(d){
+						return "#view-" + d.replace(/\s+/g, '');
+					})
+					.html(function(d){
+						return d;
+					});
+
+					b.append("div")
+					.attr("class", "collapse row")
+					.attr("id", function(d){
+						return "view-" + d.replace(/\s+/g, '');
+					})
+					.each(function(d){
+						var e = d3.select("#view-"+d.replace(/\s+/g, ''))
+						.selectAll("div")
+						.data(nav[p]["categories"][n]["subcategories"][d].candidates)
+						.enter().append("div")
+						.attr("class", "content col-md-2 col-sm-4");
+
+						e.append("img")
+						.attr("src", function(d){
+							return d.photo_url;
+						});
+						e.append("h3")
+						.html(function(d){
+							return d.Name;
+						});
+						e.append("h5")
+						.html(function(d){
+							return d.position;
+						});
+					});
+				}
+			});
+		});
 	});
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
