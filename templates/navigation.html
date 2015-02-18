@@ -75,7 +75,7 @@
 
 	<div id="TSM" class="page-section collapse-group">
 		<div class="container">
-			<h2 id="title-TSM" lass="toggle-title" data-toggle="collapse" data-target="#viewTSM">Texas Student Media</h2>
+			<h2 id="title-TSM" class="toggle-title" data-toggle="collapse" data-target="#viewTSM">Texas Student Media</h2>
 			<div class="collapse" id="viewTSM"></div>
 		</div>
 	</div>
@@ -162,7 +162,10 @@
 
 			d3.select("#title-"+d)
 			.html(
-				"<span class='description'>" + nav[d]["purpose_paragraph"] + "</span>"
+				nav[d]["full_name"]+
+				"<br><span class='description'>Earnestly represent the interests of students, to preserve and protect the traditions and legends of the University, and to support students and student organizations in their academic and community endeavors.</span>"
+
+				//replace text inbetween span to be d["purpose_paragraph"] 
 			);
 
 			var a = d3.select("#view" + p)
@@ -224,7 +227,11 @@
 						.enter().append("div")
 						.attr("class", "content col-md-2 col-sm-4");
 
-						e.append("img")
+						e.append("a")
+						.attr("href", function(d){
+							return d["detail_page_url"];
+						})
+						.append("img")
 						.attr("src", function(d){
 							return d.photo_url;
 						});
@@ -247,7 +254,11 @@
 					.enter().append("div")
 					.attr("class", "content col-md-2 col-sm-4");
 
-					b.append("img")
+					b.append("a")
+					.attr("href", function(d){
+						return d["detail_page_url"];
+					})
+					.append("img")
 					.attr("src", function(d){
 						return d.photo_url;
 					});
