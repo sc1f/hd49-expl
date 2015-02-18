@@ -56,7 +56,7 @@ make_navigation(settings.copy_sheet_location, settings.web_app_location,
 		            settings.static_files_location)
 download_images(settings.static_files_location, settings.copy_sheet_location)
 
-@app.route('/candidates/<candidate_id>')
+@app.route('/candidates/<candidate_id>.html')
 def candidate_page(candidate_id=None):
 	context = candidates[candidate_id]
 	candidateId = (context['candidate_name'] + context['major'] + context['year']).replace(" ", "_").replace("/", "_")

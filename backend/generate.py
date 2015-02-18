@@ -6,8 +6,7 @@ import settings
 
 def generate():
 	app.config['FREEZER_DESTINATION'] = settings.web_app_location
-	app.config['FREEZER_IGNORE_MIMETYPE_WARNINGS'] = True
-	app.config['FREEZER_RELATIVE_URLS'] = True
+	app.config['FREEZER_BASE_URL'] = settings.external_url
 
 	freezer = Freezer(app)
 
