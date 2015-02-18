@@ -24,7 +24,7 @@ def make_navigation(copy_sheet_location, web_app_location, static_files_location
 			if (row['Subcategory'].unescape() != ""):
 				objectToAdd['categories'][row['Category'].unescape()]['visibility_of_subcategories'] = "visible"
 			subcategories[row['Subcategory'].unescape()] = {'candidates':[],
-			                                                'numPositions': int(row['Category Number'].unescape())}
+			                                                'numPositions': int(float(row['Category Number'].unescape()))}
 
 		for row in copy[name]:
 			subcategories = objectToAdd['categories'][row['Category'].unescape()]['subcategories']
