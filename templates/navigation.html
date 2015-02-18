@@ -47,36 +47,35 @@
 
 	<div id="SG" class="page-section collapse-group">
 		<div class="container">
-			<h2 class="toggle-title" data-toggle="collapse" data-target="#viewSG">Student Government</h2>
-			<div class="collapse" id="viewSG">
-			</div>
+			<h2 id="title-SG" class="toggle-title" data-toggle="collapse" data-target="#viewSG">Student Government</h2>
+			<div class="collapse" id="viewSG"></div>
 		</div>
 	</div>
 
 	<div id="GSA" class="page-section collapse-group">
 		<div class="container">
-			<h2 class="toggle-title" data-toggle="collapse" data-target="#viewGSM">Graduate Student Assembly</h2>
-			<div class="collapse row" id="viewGSM"></div>
+			<h2 id="title-GSA" class="toggle-title" data-toggle="collapse" data-target="#viewGSA">Graduate Student Assembly</h2>
+			<div class="collapse row" id="viewGSA"></div>
 		</div>
 	</div>
 
 	<div id="Unions" class="page-section collapse-group">
 		<div class="container">
-			<h2 class="toggle-title" data-toggle="collapse" data-target="#viewUnions">University Unions</h2>
+			<h2 id="title-Unions" class="toggle-title" data-toggle="collapse" data-target="#viewUnions">University Unions</h2>
 			<div class="collapse" id="viewUnions"></div>
 		</div>
 	</div>
 
 	<div id="Co-op" class="page-section collapse-group">
 		<div class="container">
-			<h2 class="toggle-title" data-toggle="collapse" data-target="#viewCo-Op">University Co-op</h2>
+			<h2 id="title-Co-Op" class="toggle-title" data-toggle="collapse" data-target="#viewCo-Op">University Co-op</h2>
 			<div class="collapse" id="viewCo-Op"></div>
 		</div>
 	</div>
 
 	<div id="TSM" class="page-section collapse-group">
 		<div class="container">
-			<h2 class="toggle-title" data-toggle="collapse" data-target="#viewTSM">Texas Student Media</h2>
+			<h2 id="title-TSM" lass="toggle-title" data-toggle="collapse" data-target="#viewTSM">Texas Student Media</h2>
 			<div class="collapse" id="viewTSM"></div>
 		</div>
 	</div>
@@ -161,6 +160,11 @@
 				keys.push(key);
 			}
 
+			d3.select("#title-"+d)
+			.html(
+				"<span class='description'>" + nav[d]["purpose_paragraph"] + "</span>"
+			);
+
 			var a = d3.select("#view" + p)
 			.selectAll("div")
 			.data(keys)
@@ -192,8 +196,6 @@
 				}	
 
 				if(nav[p]["categories"][d]["visibility_of_subcategories"] != "hidden"){
-					
-
 					var b = d3.select("#view-"+d.replace(/\s+/g, ''))
 					.selectAll("div")
 					.data(k)
@@ -234,6 +236,28 @@
 						.html(function(d){
 							return d.position;
 						});
+					});
+				}else if(nav[p]["categories"][d]["visibility_of_subcategories"] == "hidden"){
+
+					var b = d3.select("#view-"+d.replace(/\s+/g, ''))
+					.append("div")
+					.attr("class", "row")
+					.selectAll("div")
+					.data(nav[p]["categories"][d]["subcategories"][""]["candidates"])
+					.enter().append("div")
+					.attr("class", "content col-md-2 col-sm-4");
+
+					b.append("img")
+					.attr("src", function(d){
+						return d.photo_url;
+					});
+					b.append("h3")
+					.html(function(d){
+						return d.Name;
+					});
+					b.append("h5")
+					.html(function(d){
+						return d.position;
 					});
 				}
 			});

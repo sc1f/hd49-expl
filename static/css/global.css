@@ -127,7 +127,6 @@ body {
 .page-section .content{
   padding: 10px 15px;
   text-align: center;
-  background-color: black;
 }
 
 .page-section .content img {
@@ -155,6 +154,9 @@ body {
   background-color: #EC924C;
 }
 
+.description {
+  font-size: 10px;
+}
 
 
 .toggle-title {
