@@ -99,7 +99,7 @@ body {
   position: absolute;
   top: calc(50% - 50px);
   left: calc(50% - 460px);
-  color: white;
+  color: black;
   letter-spacing: 10px;
   font-size: 3em;
   font-family: "Courier New", Courier, monospace;
