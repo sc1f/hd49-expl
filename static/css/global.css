@@ -138,20 +138,40 @@ body {
   background-color: #E56400;
 }
 
+#SG:hover {
+  background-color: #ED924D;
+}
+
 #GSA {
   background-color: #E77319;
+}
+
+#GSA:hover {
+  background-color: #EE9D5E;
 }
 
 #TSM {
   background-color: #EFA266;
 }
 
+#TSM:hover {
+  background-color: #F4BE94;
+}
+
 #Unions {
   background-color: #EA8333;
 }
 
+#Unions:hover {
+  background-color: #EE9C5C;
+}
+
 #Co-op {
   background-color: #EC924C;
+}
+
+#Co-op:hover {
+  background-color: #F2B382;
 }
 
 .description {

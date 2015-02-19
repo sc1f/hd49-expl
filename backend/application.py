@@ -36,11 +36,11 @@ for sheetName in copy.sheetNames():
 			campaign_website_title = row['Candidate Name'].unescape() + " Campaign Website"
 
 		candidateContext = {
-			'headshot_photo_credit': row['Photo Credit'].unescape(),
+			'headshot_photo_credit': row['Photo Credit'].unescape() if row['Photo Credit'].unescape() != "" else "Melanie Westfall",
 			'candidate_name': row['Candidate Name'].unescape(),
 			'major': row['Major'].unescape(),
 			'year': row['Year'].unescape(),
-			'statement': "The Daily Texan has no statement on file for this candidate" if row['Statement'].unescape() == "" else row['Statement'].unescape(),
+			'statement': ["The Daily Texan has no statement on file for this candidate"] if row['Statement'].unescape() == "" else row['Statement'].unescape().split("|||"),
 			'campaign_platform_points': row['Campaign Platform Points'].unescape().split('|||') if len(row['Campaign Platform Points'].unescape()) != 0 else [],
 			'twitter_feed_url': row['Twitter Feed URL'].unescape(),
 			'twitter_user_name': row['Twitter Feed URL'].unescape().split('/')[-1],

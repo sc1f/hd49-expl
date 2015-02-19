@@ -197,7 +197,8 @@
 				k = [];
 				for (key in nav[p]["categories"][d]["subcategories"]) {
 					k.push(key);
-				}	
+				}
+				k.sort();
 
 				if(nav[p]["categories"][d]["visibility_of_subcategories"] != "hidden"){
 					var b = d3.select("#view-"+d.replace(/\s+/g, ''))
