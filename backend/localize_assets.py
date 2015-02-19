@@ -21,6 +21,14 @@ def download_images(static_files_location, copy_sheet_location):
 					with open('default.jpg', 'rb') as g:
 						f.write(g.read())
 
+			destinationForPhoto += "_thumbnail"
+			if row['Thumbnail URL'] != "":
+				download(row['Thumbnail URL'].unescape(), destinationForPhoto)
+			else:
+				with open(destinationForPhoto + '.jpg', 'wb') as f:
+					with open('default_thumbnail.jpg', 'rb') as g:
+						f.write(g.read())
+
 def download(url, destination):
 	page = urllib2.urlopen(url)
 	content = page.read()
