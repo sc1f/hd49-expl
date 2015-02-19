@@ -36,7 +36,7 @@ for sheetName in copy.sheetNames():
 			campaign_website_title = row['Candidate Name'].unescape() + " Campaign Website"
 
 		candidateContext = {
-			'headshot_photo_credit': row['Photo Credit'].unescape() if row['Photo Credit'].unescape() != "" else "Melanie Westfall",
+			'headshot_photo_credit': "Credit: " + row['Photo Credit'].unescape() if row['Photo Credit'].unescape() != "" else "Credit: Melanie Westfall",
 			'candidate_name': row['Candidate Name'].unescape(),
 			'major': row['Major'].unescape(),
 			'year': row['Year'].unescape(),
