@@ -276,10 +276,10 @@ body {
   margin-right: 15px;
   float: right;
   clear: both;
-  color: white;
+  color: black;
   text-decoration: none !important;
 }
 
 .author-group:hover > a {
-  color: black;
+  color: white;
 }
