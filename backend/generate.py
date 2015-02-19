@@ -14,7 +14,7 @@ def generate():
 	@freezer.register_generator
 	def candidate_page():
 		for sheetName in copy.sheetNames():
-			if sheetName == 'metadata': continue
+			if sheetName == 'metadata' or sheetName == 'Attribution': continue
 			for row in copy[sheetName]:
 				yield {"candidate_id": (row['Candidate Name'].unescape() + row['Major'].unescape() + row['Year'].unescape()).replace(" ", "_").replace("/", "_")}
 				# yield '/candidates/' + (row['Candidate Name'].unescape() + row['Major'].unescape() + row['Year'].unescape()).replace(" ", "_")
