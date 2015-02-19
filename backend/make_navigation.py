@@ -8,7 +8,7 @@ def make_navigation(copy_sheet_location, web_app_location, static_files_location
 	sheetNames = copy.sheetNames()
 	data = {}
 	for name in sheetNames:
-		if name == 'metadata':
+		if name == 'metadata' or name =='Attribution':
 			continue
 		initials = name[name.find('(')+1:name.find(')')]
 		objectToAdd = {}

@@ -69,8 +69,8 @@
 
 	<div id="Co-op" class="page-section collapse-group">
 		<div class="container">
-			<h2 id="title-Co-Op" class="toggle-title" data-toggle="collapse" data-target="#viewCo-Op">University Co-op</h2>
-			<div class="collapse" id="viewCo-Op"></div>
+			<h2 id="title-Co-op" class="toggle-title" data-toggle="collapse" data-target="#viewCo-op">University Co-op</h2>
+			<div class="collapse" id="viewCo-op"></div>
 		</div>
 	</div>
 
@@ -81,7 +81,15 @@
 		</div>
 	</div>
 
-	<div class="footer"></div>
+	<div class="footer">
+		<p class="made-by">Made By:</p>
+		{% for row in attribution %}
+			<div class="author-group">
+				<a href="{{row['Author Page URL']}}" class="attribution-author"><b>{{row['Name']}}</b>
+				<a href="{{row['Author Page URL']}}" class="attribution-author">{{row['Role']}}</a>
+			</div>
+		{% endfor %}
+	</div>
 
 </body>
 </html>
@@ -155,6 +163,7 @@
 		.data(s)
 		.each(function(d){
 			var p = d;
+			console.log(d);
 
 			keys = [];
 			for (key in nav[p]["categories"]) {

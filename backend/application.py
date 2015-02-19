@@ -17,7 +17,7 @@ candidates = {}
 copy = copytext.Copy(settings.copy_sheet_location)
 
 for sheetName in copy.sheetNames():
-	if sheetName == 'metadata':
+	if sheetName == 'metadata' or sheetName == 'Attribution':
 		continue
 	for row in copy[sheetName]:
 
@@ -76,7 +76,12 @@ def navigation_page():
 				'global_css_link': url_for('static', 
 					                           filename='css/global.css'),
 				'cover_image_link': url_for('static',
-					                           filename='images/cover.jpg')}
+					                           filename='images/cover.jpg'),
+				'attribution': copy['Attribution']}
 	return render_template('navigation.html', **context)
+
+# @app.route('/attribution.html')
+# def attribution_page():
+# 	context = {}
 
 if __name__ == '__main__': app.run(debug = True)
