@@ -270,6 +270,10 @@ body {
 
 }
 
+.white-link {
+  text-decoration: none !important;
+}
+
 .attribution-author, .made-by {
   font-size: 14pt;
   margin-top: 7px;
@@ -282,4 +286,8 @@ body {
 
 .author-group:hover > a {
   color: white;
+}
+
+h3, h5 {
+  color: white !important;
 }

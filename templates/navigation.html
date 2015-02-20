@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html class="full" style="background: url('{{cover_image_link}}') no-repeat fixed;">
 <head>
 	<meta charset="utf-8">
@@ -246,11 +246,20 @@
 						.attr("src", function(d){
 							return d.photo_url;
 						});
-						e.append("h3")
+						
+						e.append("a")
+						.attr("href", function(d){
+							return d["detail_page_url"];
+						})
+						.append("h3")
 						.html(function(d){
 							return d.Name;
 						});
-						e.append("h5")
+						e.append("a")
+						.attr("href", function(d){
+							return d["detail_page_url"];
+						})
+						.append("h5")
 						.html(function(d){
 							return d.position;
 						});
@@ -273,11 +282,24 @@
 					.attr("src", function(d){
 						return d.photo_url;
 					});
-					b.append("h3")
+
+					b.append("a")
+					.attr("href", function(d){
+						return d["detail_page_url"];
+					})
+					.attr("class", "white-link")
+					.append("h3")
+					.attr("class", "white-link")
 					.html(function(d){
 						return d.Name;
 					});
-					b.append("h5")
+					b.append("a")
+					.attr("href", function(d){
+						return d["detail_page_url"];
+					})
+					.attr("class", "white-link")
+					.append("h5")
+					.attr("class", "white-link")
 					.html(function(d){
 						return d.position;
 					});
