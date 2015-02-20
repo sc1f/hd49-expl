@@ -280,12 +280,12 @@ body {
   margin-right: 15px;
   float: right;
   clear: both;
-  color: black;
+  color: white;
   text-decoration: none !important;
 }
 
 .author-group:hover > a {
-  color: white;
+  color: black;
 }
 
 h3, h5 {
