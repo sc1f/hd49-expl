@@ -10,7 +10,7 @@ source venv/bin/activate
 
 pip install frozen-flask
 
-pip install beautiulsoup4
+pip install beautifulsoup4
 
 pip install openpyxl
 
