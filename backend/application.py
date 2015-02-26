@@ -19,6 +19,10 @@ copy = copytext.Copy(settings.copy_sheet_location)
 for sheetName in copy.sheetNames():
 	if sheetName == 'metadata' or sheetName == 'Attribution':
 		continue
+
+	questionKeys = [x for x in copy[sheetName][0].columns() if 'QUESTION!!!' in x]
+	questionKeys.sort(key=lambda x: x.split('(')[1].split(')')[0])
+
 	for row in copy[sheetName]:
 
 		dtCoverage = []
@@ -35,6 +39,13 @@ for sheetName in copy.sheetNames():
 			print str(row['Campaign Website'].unescape()) + ": ERROR! - " + str(sys.exc_info()[0])
 			campaign_website_title = row['Candidate Name'].unescape() + " Campaign Website"
 
+		questionAnswers = []
+
+		for key in questionKeys:
+			if len(row[key].unescape()) != 0:
+				questionAnswers.append((key.split('QUESTION!!!: ')[1], 
+					                    row[key].unescape()))
+
 		candidateContext = {
 			'headshot_photo_credit': "Credit: " + row['Photo Credit'].unescape() if row['Photo Credit'].unescape() != "" else "Credit: Melanie Westfall",
 			'candidate_name': row['Candidate Name'].unescape(),
@@ -46,7 +57,8 @@ for sheetName in copy.sheetNames():
 			'twitter_user_name': row['Twitter Feed URL'].unescape().split('/')[-1],
 			'campaign_website': row['Campaign Website'].unescape(),
 			'campaign_website_title': campaign_website_title,
-			'dt_coverage': dtCoverage
+			'dt_coverage': dtCoverage,
+			'question_answers': questionAnswers
 		}
 		candidateId = (row['Candidate Name'].unescape() + row['Major'].unescape() + row['Year'].unescape()).replace(" ", "_").replace("/", "_")
 

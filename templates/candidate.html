@@ -94,7 +94,20 @@
             </div>
           {% endif %}
         </div>
-      {% endif %}    
+      {% endif %} 
+      {% if question_answers %}
+        <div class="row">
+          <div class="col-md-12">
+            <h3>{{candidate_name}}’s Endorsement Questionnaire Responses</h3>
+            {% for question_answer in question_answers %}
+              <dl>
+                <dt>{{question_answer[0]}}</dt>
+                <dd>{{question_answer[1]}}</dd>
+              </dl>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
     </div>     
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
