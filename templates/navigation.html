@@ -151,23 +151,28 @@
 	d3.json("{{navigation_json_link}}", function(error, nav) {
 		if (error) return console.error(error);
 
-		/*
+		
 		// ugly temp fix for pushing winners to the front
 		for (key in nav) {
 			for (category in nav[key]['categories']) {
 				for (subcategory in nav[key]['categories'][category]['subcategories']) {
 					nav[key]['categories'][category]['subcategories'][subcategory]['candidates'].sort(function(a, b) {
 						// I wish there was an xOR in javascript :-/
-						if (a['winner'] && ! b['winner']) return -1;
-						if (!a['winner'] && b['winner']) return 1;
-						if ((a['winner'] && b['winner']) || (!a['winner'] && !a['winner'])) {
+						if (a['winner'] && ! b['winner']) 
+							return -1;
+						else if (!a['winner'] && b['winner'])
+							return 1;
+						else if (a['winner'] && b['winner']) {
 							return a['Name'].split(" ").slice(-1)[0][0] - b['Name'].split(" ").slice(-1)[0][0];
+						} else /*(!a['winner'] && !a['winner'])*/ {
+							//return a['Name'].split(" ").slice(-1)[0][0] - b['Name'].split(" ").slice(-1)[0][0];
+							return 0;
 						} 
 					});
 				}
 			}
 		}
-		*/
+		
 		
 
 		s = [];
