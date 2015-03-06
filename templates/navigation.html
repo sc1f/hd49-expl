@@ -163,9 +163,8 @@
 						else if (!a['winner'] && b['winner'])
 							return 1;
 						else if (a['winner'] && b['winner']) {
-							return a['Name'].split(" ").slice(-1)[0][0] - b['Name'].split(" ").slice(-1)[0][0];
+							return a['Name'].split(" ").slice(-1)[0].localeCompare(b['Name'].split(" ").slice(-1)[0])
 						} else /*(!a['winner'] && !a['winner'])*/ {
-							//return a['Name'].split(" ").slice(-1)[0][0] - b['Name'].split(" ").slice(-1)[0][0];
 							return 0;
 						} 
 					});
