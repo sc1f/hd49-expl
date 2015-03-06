@@ -35,6 +35,7 @@ def make_navigation(copy_sheet_location, web_app_location, static_files_location
 			candidate['photo_url'] = os.path.join('static', 'images', 'candidate_headshots', candidateId) + '_thumbnail.jpg'
 			candidate['position'] = row['Position'].unescape()
 			candidate['detail_page_url'] = 'candidates/' + candidateId + '.html'
+			candidate['winner'] = row['WINNER'] != ''
 			arrayToAddTo.append(candidate)
 
 		data[initials] = objectToAdd

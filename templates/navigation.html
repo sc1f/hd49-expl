@@ -148,11 +148,27 @@
 		// }
 	}
 
-
 	d3.json("{{navigation_json_link}}", function(error, nav) {
 		if (error) return console.error(error);
 
-		console.log(nav);
+		/*
+		// ugly temp fix for pushing winners to the front
+		for (key in nav) {
+			for (category in nav[key]['categories']) {
+				for (subcategory in nav[key]['categories'][category]['subcategories']) {
+					nav[key]['categories'][category]['subcategories'][subcategory]['candidates'].sort(function(a, b) {
+						// I wish there was an xOR in javascript :-/
+						if (a['winner'] && ! b['winner']) return -1;
+						if (!a['winner'] && b['winner']) return 1;
+						if ((a['winner'] && b['winner']) || (!a['winner'] && !a['winner'])) {
+							return a['Name'].split(" ").slice(-1)[0][0] - b['Name'].split(" ").slice(-1)[0][0];
+						} 
+					});
+				}
+			}
+		}
+		*/
+		
 
 		s = [];
 		for (key in nav) {
@@ -163,7 +179,6 @@
 		.data(s)
 		.each(function(d){
 			var p = d;
-			console.log(d);
 
 			keys = [];
 			for (key in nav[p]["categories"]) {
@@ -236,7 +251,13 @@
 						.selectAll("div")
 						.data(nav[p]["categories"][n]["subcategories"][d].candidates)
 						.enter().append("div")
-						.attr("class", "content col-md-2 col-sm-4");
+						.attr("class", function(d) {
+							if (!d['winner']) {
+								return "loser content col-md-2 col-sm-4";
+							} else {
+								return "winner content col-md-2 col-sm-4";
+							}
+						});
 
 						e.append("a")
 						.attr("href", function(d){
@@ -272,7 +293,13 @@
 					.selectAll("div")
 					.data(nav[p]["categories"][d]["subcategories"][""]["candidates"])
 					.enter().append("div")
-					.attr("class", "content col-md-2 col-sm-4");
+					.attr("class", function(d) {
+						if (!d['winner']) {
+							return "loser content col-md-2 col-sm-4";
+						} else {
+							return "winner content col-md-2 col-sm-4";
+						}
+					});
 
 					b.append("a")
 					.attr("href", function(d){

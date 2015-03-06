@@ -129,9 +129,15 @@ body {
   text-align: center;
 }
 
-.page-section .content img {
+.page-section .loser img {
   width: 140px;
   height: 140px;
+  opacity: 0.4;
+}
+
+.page-section .winner img {
+    width: 140px;
+    height: 140px;
 }
 
 #SG {
