@@ -1,4 +1,8 @@
-# student-elections-explorer
+# HD49 elections explorer
+
+written for the daily texan
+
+backend by miles hutson
 
 To get started:
 
