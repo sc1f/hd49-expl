@@ -1,3 +1,4 @@
+# import statements
 import copytext
 import json
 from flask import Flask, render_template, url_for
@@ -6,74 +7,57 @@ import sys
 import urllib2
 from bs4 import BeautifulSoup
 
+# give us the settings and methods to freeze this app
 import settings
 from make_navigation import make_navigation
 from localize_assets import download_images
 
+#init flask
 app = Flask(__name__, static_folder=settings.static_files_location, 
 	        template_folder=settings.template_folders_location)
 
 candidates = {}
+#run copytext
 copy = copytext.Copy(settings.copy_sheet_location)
-
-for sheetName in copy.sheetNames():
-	if sheetName == 'metadata' or sheetName == 'Attribution':
-		continue
-
-	questionKeys = [x for x in copy[sheetName][0].columns() if 'QUESTION!!!' in x]
-	questionKeys.sort(key=lambda x: x.split('(')[1].split(')')[0])
+#for each sheet of candidates, start generating data
+for sheetName in copy.sheetNames(): 
 
 	for row in copy[sheetName]:
 
-		dtCoverage = []
-
-		links = row['Daily Texan Coverage URLs'].unescape().split('|||') if len(row['Daily Texan Coverage URLs'].unescape()) != 0 else []
-		titles = row['Daily Texan Coverage Titles'].unescape().split('|||') if len(row['Daily Texan Coverage Titles'].unescape()) != 0 else []
-
-		for i in xrange(len(titles)):
-			dtCoverage.append({'title':titles[i], 'link':links[i]})
-
 		try:
+			#checks if sites are accessible
 			campaign_website_title = BeautifulSoup(urllib2.urlopen(row['Campaign Website'].unescape())).title.string if len(row['Campaign Website'].unescape()) != 0 else ""
 		except:
+			#if not accesssible throw error
 			print str(row['Campaign Website'].unescape()) + ": ERROR! - " + str(sys.exc_info()[0])
 			campaign_website_title = row['Candidate Name'].unescape() + " Campaign Website"
-
-		questionAnswers = []
-
-		for key in questionKeys:
-			if len(row[key].unescape()) != 0:
-				questionAnswers.append((key.split('QUESTION!!!: ')[1], 
-					                    row[key].unescape()))
-
+		#parses the copy
 		candidateContext = {
-			'headshot_photo_credit': "Credit: " + row['Photo Credit'].unescape() if row['Photo Credit'].unescape() != "" else "Credit: Melanie Westfall",
+			'headshot_photo_credit': "Credit: " + row['Photo Credit'].unescape() if row['Photo Credit'].unescape() != "" else "Photo courtesy of the candidate",
 			'candidate_name': row['Candidate Name'].unescape(),
-			'major': row['Major'].unescape(),
-			'year': row['Year'].unescape(),
-			'statement': ["The Daily Texan has no statement on file for this candidate"] if row['Statement'].unescape() == "" else row['Statement'].unescape().split("|||"),
-			'campaign_platform_points': row['Campaign Platform Points'].unescape().split('|||') if len(row['Campaign Platform Points'].unescape()) != 0 else [],
-			'twitter_feed_url': row['Twitter Feed URL'].unescape(),
-			'twitter_user_name': row['Twitter Feed URL'].unescape().split('/')[-1],
+			'occupation': row['Occupation'].unescape(),
+			'biography': row['Biography'].unescape(),
+			'endorsements': row['Endorsements'].unescape(),
+			'campaign_platform_points': row['Platform'].unescape(),
+			'priority1': row['Priority 1'].unescape(),
+			'priority2': row['Priority 2'].unescape(),
+			'priority3': row['Priority 3'].unescape(),
+			'twitter_feed_url': row['Twitter'].unescape(),
+			'twitter_user_name': row['Twitter'].unescape().split('/')[-1],
 			'campaign_website': row['Campaign Website'].unescape(),
-			'campaign_website_title': campaign_website_title,
-			'dt_coverage': dtCoverage,
-			'question_answers': questionAnswers
+			'campaign_website_title': campaign_website_title
 		}
-		candidateId = (row['Candidate Name'].unescape() + row['Major'].unescape() + row['Year'].unescape()).replace(" ", "_").replace("/", "_")
-
+		#generate a custom ID for each candidate
+		candidateId = row['Candidate Name'].unescape().replace(" ", "_").replace("/", "_")
+		#imports context data into candidates var?
 		candidates[candidateId] = candidateContext
-
-make_navigation(settings.copy_sheet_location, settings.web_app_location, 
-		            settings.static_files_location)
-download_images(settings.static_files_location, settings.copy_sheet_location)
-
-@app.route('/candidates/<candidate_id>.html')
+#routing
+@app.route('/<candidate_id>.html')
 def candidate_page(candidate_id=None):
 	context = candidates[candidate_id]
-	candidateId = (context['candidate_name'] + context['major'] + context['year']).replace(" ", "_").replace("/", "_")
+	candidateId = context['Candidate Name'].unescape().replace(" ", "_").replace("/", "_")
 	candidatePhotoUrl = url_for('static', 
-			                     filename='images/candidate_headshots/' + candidateId + '.jpg')
+			                     filename='images/headshots/' + candidateId + '.jpg')
 	context['headshot_photo_url'] = candidatePhotoUrl
 	context['candidate_styling'] = url_for('static', filename='css/candidate.css')
 	context['cover_image_link'] = url_for('static',
@@ -83,14 +67,11 @@ def candidate_page(candidate_id=None):
 
 @app.route('/')
 def navigation_page():
-	context = {'navigation_json_link': url_for('static', 
-		                                       filename='js/navigation.json'),
+	context = {'js_link': url_for('static', 
+		                                       filename='js/main.js'),
 				'global_css_link': url_for('static', 
-					                           filename='css/global.css'),
-				'cover_image_link': url_for('static',
-					                           filename='images/cover.jpg'),
-				'attribution': copy['Attribution']}
-	return render_template('navigation.html', **context)
+					                           filename='css/styles.css')
+	return render_template('main.html', **context)
 
 # @app.route('/attribution.html')
 # def attribution_page():

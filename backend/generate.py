@@ -16,9 +16,8 @@ def generate():
 		for sheetName in copy.sheetNames():
 			if sheetName == 'metadata' or sheetName == 'Attribution': continue
 			for row in copy[sheetName]:
-				yield {"candidate_id": (row['Candidate Name'].unescape() + row['Major'].unescape() + row['Year'].unescape()).replace(" ", "_").replace("/", "_")}
-				# yield '/candidates/' + (row['Candidate Name'].unescape() + row['Major'].unescape() + row['Year'].unescape()).replace(" ", "_")
-	
+				yield {"candidate_id": row['Candidate Name'].unescape().replace(" ", "_").replace("/", "_")}
+				
 	freezer.freeze()
 
 if __name__ == '__main__': generate()
