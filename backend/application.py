@@ -9,8 +9,6 @@ from bs4 import BeautifulSoup
 
 # give us the settings and methods to freeze this app
 import settings
-from make_navigation import make_navigation
-from localize_assets import download_images
 
 #init flask
 app = Flask(__name__, static_folder=settings.static_files_location, 
@@ -61,7 +59,7 @@ def candidate_page(candidate_id=None):
 	context['headshot_photo_url'] = candidatePhotoUrl
 	context['candidate_styling'] = url_for('static', filename='css/candidate.css')
 	context['cover_image_link'] = url_for('static',
-					                      filename='images/cover_candidate.jpg')
+					                     	filename='images/cover_candidate.jpg')
 
 	return render_template('candidate.html', **context)
 
@@ -70,8 +68,8 @@ def navigation_page():
 	context = {'js_link': url_for('static', 
 		                                       filename='js/main.js'),
 				'global_css_link': url_for('static', 
-					                           filename='css/styles.css')
-	return render_template('main.html', **context)
+					                           filename='css/styles.css')}
+	return render_template('index.html', **context)
 
 # @app.route('/attribution.html')
 # def attribution_page():
