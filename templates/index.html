@@ -5,9 +5,10 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>HD49 Election Explorer</title>
-		<link rel="stylesheet" href="{{global_css_link}}">
+		<link rel="stylesheet" href="/static/css/styles.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<link href='https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,300italic,400italic,500italic|Roboto+Mono' rel='stylesheet' type='text/css'>
+		<link rel="shortcut icon" href="{{ url_for('static', filename='/static/images/favicon.ico') }}">
 	</head>
 	<body>
 		<nav class="navbar navbar-default topnav" id="navi">
@@ -24,39 +25,45 @@
 					<h1>HD49: Where They Stand</h1>
 					<h5>By <a href="https://www.dailytexanonline.com/author/forrest-milburn"> Forrest Milburn</a>, <a href="https://www.dailytexanonline.com/author/junyuan-tan">Junyuan Tan</a> and <a href="https://www.dailytexanonline.com/author/miles-hutson">Miles Hutson</a></h5>
 					<p class="intro-article">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam venenatis tellus et mi sollicitudin, a mollis ligula convallis. Proin quis risus non urna cursus accumsan et ullamcorper massa. Aliquam imperdiet tempor velit. Nullam in ligula ultrices sapien tempus tempor. Nulla convallis lorem a mauris lobortis lacinia. Integer vel sagittis sapien, vel tincidunt ante. Aenean et lorem nibh. Pellentesque vel blandit lacus. Integer scelerisque sit amet leo at dignissim. Sed porttitor auctor metus sit amet varius. Etiam varius posuere sem a sodales. Fusce aliquet eget nisi at interdum. Maecenas nunc orci, pulvinar vitae erat sed, volutpat mattis neque. Nulla malesuada erat eu velit congue tempus. Donec non ex ut lorem vestibulum sodales.</p>
+					<!-- Facebook sharing link? -->
   				</div>
   				<div class="col-md-2"></div>
   				<hr/>
+  				{% for row in COPY.s1 %}
   				<div class="col-md-4 left">
-  					<img src="https://pbs.twimg.com/profile_images/451007105391022080/iu1f7brY.png" alt="Candidate name" class="candidate-img">
-  					<h4 class="link"><a href="http://www.google.com">Campaign Website</a></h4>
-  					<h4 class="link"><a href="http://www.twitter.com">Twitter</a></h4>
+  					<img src="{{ COPY.s1.row['purl'] }}" alt="{{ COPY.s1.row['cand_name'] }}" class="candidate-img">
+  					<h4 class="link"><a href="{{ COPY.s1.row['site'] }}">Campaign Website</a></h4>
+  					<h4 class="link"><a href="{{ COPY.s1.row['twit'] }}">Twitter</a></h4>
   				</div>
   				<div class="col-md-8 main">
-  					<h2 class="name">Candidate Name</h2>
-  					<h3 class="occupation">Occupation</h3>
+  					<h2 class="name">{{ COPY.s1.row['cand_name'] }}</h2>
+  					<h3 class="occupation">{{ COPY.s1.row['occu'] }}</h3>
   					<h4 class="subhead">Biography</h4>
-  					<p class="description">Aenean et lorem nibh. Pellentesque vel blandit lacus. Integer scelerisque sit amet leo at dignissim. Sed porttitor auctor metus sit amet varius. Etiam varius posuere sem a sodales. Fusce aliquet eget nisi at interdum. Maecenas nunc orci, pulvinar vitae erat sed, volutpat mattis neque. Nulla malesuada erat eu velit congue tempus. Donec non ex ut lorem vestibulum sodales.</p>
+  					<p class="description">{{ COPY.s1.row['bio'] }}</p>
   					<h4 class="subhead">Platform Points</h4>
-  					<p class="description">Aenean et lorem nibh. Pellentesque vel blandit lacus. Integer scelerisque sit amet leo at dignissim. Sed porttitor auctor metus sit amet varius. Etiam varius posuere sem a sodales. Fusce aliquet eget nisi at interdum. Maecenas nunc orci, pulvinar vitae erat sed, volutpat mattis neque. Nulla malesuada erat eu velit congue tempus. Donec non ex ut lorem vestibulum sodales.</p>
+  					<p class="description">{{ COPY.s1.row['plat'] }}</p>
   					<h4 class="subhead">Policy Priorities</h4>
   						<ol>
-  							<li class="priority">1: Aenean et lorem nibh. </li>
-  							<li class="priority">2: Aenean et lorem nibh.</li>
-  							<li class="priority">3: Aenean et lorem nibh.</li>
+  							<li class="priority">{{ COPY.s1.row['p1'] }}</li>
+  							<li class="priority">{{ COPY.s1.row['p2'] }}</li>
+  							<li class="priority">{{ COPY.s1.row['p3'] }}</li>
   						</ol>
+  					<h4 class="subhead">Endorsed By:</h4>
+  					<p class="description">{{ COPY.s1.row['endors'] }}</p>
   				</div>
+  				<hr/>
+  				{% endfor %}
 
 
 			</div>
 		</div>
-		<!--  <div class="footer">
+		<div class="footer">
 			<div class="container">
 				<p class="footer-txt">Created by <a href="http://www.dailytexanonline.com">The Daily Texan</a> | <a href="#" id="getcredits">Contributors</a> | <a href="https://github.com/sc1f/hd49-expl">GitHub</a></p>
 			</div>
-		</div>-->
+		</div>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-		<script src="{{js_link}}"></script>
+		<script src="static/js/main.js"></script>
 	</body>
 </html>
