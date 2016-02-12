@@ -136,8 +136,7 @@ class Sheet(object):
                 return row 
 
         if 'key' not in self._columns:
-            #return Error('COPY.%s.%s [no key column in sheet]' % (self.name, i))
-            return row
+            return Error('COPY.%s.%s [no key column in sheet]' % (self.name, i))
 
         return Error('COPY.%s.%s [key does not exist in sheet]' % (self.name, i))
 

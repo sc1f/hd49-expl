@@ -15,7 +15,15 @@ app = Flask(__name__, static_folder=settings.static_files_location,
 	        template_folder=settings.template_folders_location)
 
 #datawork
+copy = copytext.Copy('dataset.xlsx')
 
+for row in copy['s1']:
+	candidateContext = {
+			'name': row['cand_name'].unescape()
+			'occupation': row['occu'].unescape()
+			'biography': row['bio'].unescape()
+
+		}
 
 #routing
 @app.route('/')
