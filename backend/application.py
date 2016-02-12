@@ -20,6 +20,8 @@ candidates = {}
 copy = copytext.Copy('dataset.xlsx')
 
 for sheetName in copy.sheetNames():
+	if sheetName == 's1': 
+		continue
 	for row in copy[sheetName]:
 		candidateContext = {
 				'name' : row['cand_name'].unescape(),

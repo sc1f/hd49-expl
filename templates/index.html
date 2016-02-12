@@ -31,25 +31,25 @@
   				<hr/>
   				{% for row in s1 %}
   				<div class="col-md-4 left">
-  					<img src="{{ photo }}" alt="{{ name }}" class="candidate-img">
-  					<h4 class="link"><a href="{{ website }}">Campaign Website</a></h4>
-  					<h4 class="link"><a href="{{ twitter }}">Twitter</a></h4>
+  					<img src="{{ row['purl'] }}" alt="{{ row['cand_name'] }}" class="candidate-img">
+  					<h4 class="link"><a href="{{ row['site'] }}">Campaign Website</a></h4>
+  					<h4 class="link"><a href="{{ row['twit'] }}">Twitter</a></h4>
   				</div>
   				<div class="col-md-8 main">
-  					<h2 class="name">{{ name }}</h2>
-  					<h3 class="occupation">{{ occupation }}</h3>
+  					<h2 class="name">{{ row['cand_name'] }}</h2>
+  					<h3 class="occupation">{{ row['occu'] }}</h3>
   					<h4 class="subhead">Biography</h4>
-  					<p class="description">{{ biography }}</p>
+  					<p class="description">{{ row['bio'] }}</p>
   					<h4 class="subhead">Platform Points</h4>
-  					<p class="description">{{ platform }}</p>
+  					<p class="description">{{ row['plat'] }}</p>
   					<h4 class="subhead">Policy Priorities</h4>
   						<ol>
-  							<li class="priority">{{ priority1 }}</li>
-  							<li class="priority">{{ priority2 }}</li>
-  							<li class="priority">{{ priority3 }}</li>
+  							<li class="priority">{{ row['p1'] }}</li>
+  							<li class="priority">{{ row['p2'] }}</li>
+  							<li class="priority">{{ row['p3'] }}</li>
   						</ol>
   					<h4 class="subhead">Endorsed By:</h4>
-  					<p class="description">{{ endorsements }}</p>
+  					<p class="description">{{ row['endors'] }}</p>
   				</div>
   				<hr/>
   				{% endfor %}
