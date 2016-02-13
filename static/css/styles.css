@@ -75,12 +75,16 @@ hr {
    border-top: 1px solid #aaaaaa;
    border-bottom: 1px solid #ffffff;
 }
-hr:last-of-type {
-	display: none;
-}
 p, li {
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: Roboto, Helvetica, Arial, sans-serif;
 }
+div.fb-contain {
+	margin: auto;
+	margin-bottom: .75em;
+	position: relative;
+	left: 10%;
+}
+.twitter-share-button[style] { vertical-align: top !important; }
 .intro > h1{
 	font-size: 4.5em !important;
 	text-align: center;
@@ -101,6 +105,9 @@ p, li {
 	padding-left: 50px;
 	padding-right: 50px;
 }
+h3.contrib, p.contrib-txt, p.photo-cred {
+	text-align: center;
+}
 h2.name {
 	font-size: 2.5em;
 	margin-bottom: 0 !important;
@@ -120,7 +127,7 @@ img.candidate-img {
 	height: 17.5em;
 	position: relative;
 	margin: auto;
-	margin-bottom: 2em;
+	margin-bottom: 1em;
 }
 .footer-txt {
 -webkit-margin-after: 0;

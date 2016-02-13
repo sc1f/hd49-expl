@@ -7,10 +7,18 @@
 		<title>HD49 Election Explorer</title>
 		<link rel="stylesheet" href="/static/css/styles.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-		<link href='https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,300italic,400italic,500italic|Roboto+Mono' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,700italic,400italic|Lora:400,400italic,700' rel='stylesheet' type='text/css'>
 		<link rel="shortcut icon" href="{{ url_for('static', filename='/static/images/favicon.ico') }}">
 	</head>
 	<body>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+  			var js, fjs = d.getElementsByTagName(s)[0];
+  			if (d.getElementById(id)) return;
+  			js = d.createElement(s); js.id = id;
+  			js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+  			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
 		<nav class="navbar navbar-default topnav" id="navi">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -20,20 +28,27 @@
 		</nav>
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-2"></div>
+				<div class="col-md-2" aria-label="padding"></div>
   				<div class="col-md-8 intro">
 					<h1>HD49: Where They Stand</h1>
 					<h5>By <a href="https://www.dailytexanonline.com/author/forrest-milburn"> Forrest Milburn</a>, <a href="https://www.dailytexanonline.com/author/junyuan-tan">Junyuan Tan</a> and <a href="https://www.dailytexanonline.com/author/miles-hutson">Miles Hutson</a></h5>
+					<div class="fb-contain">
+					<div class="fb-share-button" data-href="http://interactives.dailytexanonline.com/hd49" data-layout="button" style="margin:0 auto;vertical-align:top;"></div>
+					<a href="https://twitter.com/share" class="twitter-share-button" data-text="Curious about the House District 49 primary elections? Check out this issues explorer by @thedailytexan">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.async=true;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+					</div>
 					<p class="intro-article">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam venenatis tellus et mi sollicitudin, a mollis ligula convallis. Proin quis risus non urna cursus accumsan et ullamcorper massa. Aliquam imperdiet tempor velit. Nullam in ligula ultrices sapien tempus tempor. Nulla convallis lorem a mauris lobortis lacinia. Integer vel sagittis sapien, vel tincidunt ante. Aenean et lorem nibh. Pellentesque vel blandit lacus. Integer scelerisque sit amet leo at dignissim. Sed porttitor auctor metus sit amet varius. Etiam varius posuere sem a sodales. Fusce aliquet eget nisi at interdum. Maecenas nunc orci, pulvinar vitae erat sed, volutpat mattis neque. Nulla malesuada erat eu velit congue tempus. Donec non ex ut lorem vestibulum sodales.</p>
 					<!-- Facebook sharing link? -->
   				</div>
-  				<div class="col-md-2"></div>
+  				<div class="col-md-2" aria-label="padding"></div>
   				<hr/>
   				{% for row in s1 %}
   				<div class="col-md-4 left">
   					<img src="{{ row['purl'] }}" alt="{{ row['cand_name'] }}" class="candidate-img">
+  					<p class="photo-cred">Photo courtesy of the candidate</p>
   					<h4 class="link"><a href="{{ row['site'] }}">Campaign Website</a></h4>
   					<h4 class="link"><a href="{{ row['twit'] }}">Twitter</a></h4>
+  					<!-- add twitter feed -->
   				</div>
   				<div class="col-md-8 main">
   					<h2 class="name">{{ row['cand_name'] }}</h2>
@@ -53,13 +68,19 @@
   				</div>
   				<hr/>
   				{% endfor %}
-
-
+  				<!-- Facebook sharing link? -->
+				<!-- credits -->
+				<div class="col-md-2" aria-label="padding"></div>
+  				<div class="col-md-8 intro">
+					<h3 class="contrib">Contributors</h3>
+					<p class="contrib-txt">Article by <a href="https://www.dailytexanonline.com/author/forrest-milburn"> Forrest Milburn</a> | Developed by <a href="https://www.dailytexanonline.com/author/junyuan-tan">Junyuan Tan</a> | Original backend by <a href="https://www.dailytexanonline.com/author/miles-hutson">Miles Hutson</a></h5>					
+  				</div>
+  				<div class="col-md-2" aria-label="padding"></div>
 			</div>
 		</div>
 		<div class="footer">
 			<div class="container">
-				<p class="footer-txt">Created by <a href="http://www.dailytexanonline.com">The Daily Texan</a> | <a href="#" id="getcredits">Contributors</a> | <a href="https://github.com/sc1f/hd49-expl">GitHub</a></p>
+				<p class="footer-txt">Created by <a href="http://www.dailytexanonline.com">The Daily Texan</a> | <a href="https://github.com/sc1f/hd49-expl">GitHub</a></p>
 			</div>
 		</div>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
