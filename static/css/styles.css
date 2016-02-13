@@ -108,6 +108,9 @@ div.fb-contain {
 h3.contrib, p.contrib-txt, p.photo-cred {
 	text-align: center;
 }
+p.contrib-txt {
+	margin-bottom: 3em;
+}
 h2.name {
 	font-size: 2.5em;
 	margin-bottom: 0 !important;
@@ -116,7 +119,10 @@ h3.occupation {
 	margin-top: .5em !important;
 	font-style: italic;
 }
-
+.twitter-timeline.twitter-timeline-rendered {
+	margin: auto !important;
+	position: relative;
+}
 .main {
 	padding-top: 0;
 }

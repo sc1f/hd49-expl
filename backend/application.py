@@ -5,7 +5,6 @@ from flask import Flask, render_template, url_for
 import os
 import sys
 import urllib2
-from bs4 import BeautifulSoup
 
 # give us the settings and methods to freeze this app
 import settings

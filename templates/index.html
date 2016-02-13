@@ -9,6 +9,8 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,700italic,400italic|Lora:400,400italic,700' rel='stylesheet' type='text/css'>
 		<link rel="shortcut icon" href="{{ url_for('static', filename='/static/images/favicon.ico') }}">
+		<script>window.twttr = (function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0],t = window.twttr || {};if (d.getElementById(id)) return t;js = d.createElement(s);js.id = id;js.src = "https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, "script", "twitter-wjs"));
+		</script>
 	</head>
 	<body>
 		<div id="fb-root"></div>
@@ -22,7 +24,7 @@
 		<nav class="navbar navbar-default topnav" id="navi">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#">The Daily Texan</a>
+					<a class="navbar-brand" href="http://www.dailytexanonline.com">The Daily Texan</a>
 				</div>
 			</div><!-- /.container-fluid -->
 		</nav>
@@ -35,7 +37,6 @@
 					<div class="fb-contain">
 					<div class="fb-share-button" data-href="http://interactives.dailytexanonline.com/hd49" data-layout="button" style="margin:0 auto;vertical-align:top;"></div>
 					<a href="https://twitter.com/share" class="twitter-share-button" data-text="Curious about the House District 49 primary elections? Check out this issues explorer by @thedailytexan">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.async=true;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 					</div>
 					<p class="intro-article">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam venenatis tellus et mi sollicitudin, a mollis ligula convallis. Proin quis risus non urna cursus accumsan et ullamcorper massa. Aliquam imperdiet tempor velit. Nullam in ligula ultrices sapien tempus tempor. Nulla convallis lorem a mauris lobortis lacinia. Integer vel sagittis sapien, vel tincidunt ante. Aenean et lorem nibh. Pellentesque vel blandit lacus. Integer scelerisque sit amet leo at dignissim. Sed porttitor auctor metus sit amet varius. Etiam varius posuere sem a sodales. Fusce aliquet eget nisi at interdum. Maecenas nunc orci, pulvinar vitae erat sed, volutpat mattis neque. Nulla malesuada erat eu velit congue tempus. Donec non ex ut lorem vestibulum sodales.</p>
 					<!-- Facebook sharing link? -->
@@ -48,7 +49,13 @@
   					<p class="photo-cred">Photo courtesy of the candidate</p>
   					<h4 class="link"><a href="{{ row['site'] }}">Campaign Website</a></h4>
   					<h4 class="link"><a href="{{ row['twit'] }}">Twitter</a></h4>
+
   					<!-- add twitter feed -->
+  					{% if row['twitter_widget'] != " " %}
+					<div class="twitter-contain" style="margin: auto; position: relative;">
+  					<a class="twitter-timeline" href="{{row['twit']}}" data-widget-id="{{row['twitter_widget']}}" style="margin:auto !important;" width="100%" height="250px"></a>
+					</div>
+					{% endif %}
   				</div>
   				<div class="col-md-8 main">
   					<h2 class="name">{{ row['cand_name'] }}</h2>
