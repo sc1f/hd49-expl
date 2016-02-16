@@ -204,8 +204,6 @@ ol.priority-contain, .priority {
 	margin-left: inherit;
 	list-style-type: none;
 }
-.
-}
 @media (max-width: 540px) {
 .popup {
 min-width: 80%;
