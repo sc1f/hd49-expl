@@ -46,13 +46,20 @@
   				{% for row in s1 %}
   				<div class="col-md-4 left">
   					<img src="{{ row['purl'] }}" alt="{{ row['cand_name'] }}" class="candidate-img">
-  					<!-- <p class="photo-cred">Photo courtesy of the candidate</p> -->
+  					{% if row['pcred'] != '' %}
+  					<p class="photo-cred">Photo: {{ row['pcred'] }}</p>
+  					{% endif %}
+					{% if row['site'] != '' %}
   					<h4 class="link"><a href="{{ row['site'] }}">Campaign Website</a></h4>
+  					{% endif %}
+  					{% if row['fb'] != '' %}
   					<h4 class="link"><a href="{{ row['fb'] }}">Facebook</a></h4>
+  					{% endif %}
+  					{% if row['twit'] != '' %}
   					<h4 class="link"><a href="{{ row['twit'] }}">Twitter</a></h4>
-
+					{% endif %}
   					<!-- add twitter feed -->
-  					{% if row['twitter_widget'] != " " %}
+  					{% if row['twitter_widget'] != '' %}
 					<div class="twitter-contain table" style="margin: auto; position: relative;">
 						<div class="table-cell">
   							<a class="twitter-timeline" href="{{row['twit']}}" data-widget-id="{{row['twitter_widget']}}" style="margin:auto !important;" width="350px" height="250px"></a>
@@ -78,12 +85,11 @@
   				</div>
   				<hr/>
   				{% endfor %}
-  				<!-- Facebook sharing link? -->
 				<!-- credits -->
 				<div class="col-md-2" aria-label="padding"></div>
   				<div class="col-md-8 intro">
 					<h3 class="contrib">Contributors</h3>
-					<p class="contrib-txt">Article by <a href="https://www.dailytexanonline.com/author/forrest-milburn"> Forrest Milburn</a> | Developed by <a href="https://www.dailytexanonline.com/author/junyuan-tan">Junyuan Tan</a> | Photos by <a href="https://www.dailytexanonline.com/author/rachel-zein">Rachel Zein</a> | Original backend by <a href="https://www.dailytexanonline.com/author/miles-hutson">Miles Hutson</a></h5>					
+					<p class="contrib-txt">Article by <a href="https://www.dailytexanonline.com/author/forrest-milburn"> Forrest Milburn</a> | Developed by <a href="https://www.dailytexanonline.com/author/junyuan-tan">Junyuan Tan</a> | Original backend by <a href="https://www.dailytexanonline.com/author/miles-hutson">Miles Hutson</a></h5>					
   				</div>
   				<div class="col-md-2" aria-label="padding"></div>
 			</div>
