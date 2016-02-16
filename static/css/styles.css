@@ -84,7 +84,12 @@ div.fb-contain {
 	position: relative;
 	left: 10%;
 }
-.twitter-share-button[style] { vertical-align: top !important; }
+.priority {
+	list-style-type: decimal;
+}
+.twitter-share-button[style] { 
+	vertical-align: top !important; 
+}
 .intro > h1{
 	font-size: 4.5em !important;
 	text-align: center;
@@ -95,6 +100,14 @@ div.fb-contain {
 .link {
 	text-align: center;
 }
+ol.priority-contain {
+	margin-left: 1em;
+	font-size: 1.25em;
+}
+ol.priority-contain > li {
+	font-family: Lora;
+	font-style: italic;
+}
 .intro > p, .intro > h5 {
 	width: 80%;
 	margin: auto;
@@ -104,6 +117,9 @@ div.fb-contain {
 	padding-top: 1em;
 	padding-left: 50px;
 	padding-right: 50px;
+}
+.main {
+	padding-right: 1.5em;
 }
 h3.contrib, p.contrib-txt, p.photo-cred {
 	text-align: center;
@@ -119,9 +135,9 @@ h3.occupation {
 	margin-top: .5em !important;
 	font-style: italic;
 }
-.twitter-timeline.twitter-timeline-rendered {
+.twitter-timeline-rendered {
 	margin: auto !important;
-	position: relative;
+	text-align: center;
 }
 .main {
 	padding-top: 0;
@@ -134,6 +150,18 @@ img.candidate-img {
 	position: relative;
 	margin: auto;
 	margin-bottom: 1em;
+}
+.table{
+    display:table;
+    height: 100%;
+    width: auto !important;
+}
+div.timeline {
+	margin: auto !important;
+} 
+.table-cell{
+    display:table-cell;
+    vertical-align: middle;
 }
 .footer-txt {
 -webkit-margin-after: 0;
@@ -169,6 +197,14 @@ font-family: Lora;
 .container-fluid {
 width: 100%;
 }
+.main {
+	text-align: center;
+}
+ol.priority-contain, .priority {
+	margin-left: inherit;
+	list-style-type: none;
+}
+.
 }
 @media (max-width: 540px) {
 .popup {
