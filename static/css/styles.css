@@ -1,3 +1,5 @@
+/* one day simba this styleshhet will be beautiful and well-commented BUT IT ISN'T TODAY */
+
 /*------------------------------------*\
 #RESET
 \*------------------------------------*/
@@ -14,12 +16,12 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-margin: 0;
-padding: 0;
-border: 0;
-font-size: 100%;
-font: inherit;
-vertical-align: baseline;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -53,6 +55,10 @@ overflow: auto;
 /*------------------------------------*\
 #GLOBALS
 \*------------------------------------*/
+html, body {
+	max-width: 100%;
+    overflow-x: hidden;
+}
 html {
 position: relative;
 min-height: 100%;
@@ -74,6 +80,9 @@ hr {
    border: none;
    border-top: 1px solid #aaaaaa;
    border-bottom: 1px solid #ffffff;
+}
+hr.mini {
+	width: 50%;
 }
 p, li {
 	font-family: Roboto, Helvetica, Arial, sans-serif;
@@ -119,7 +128,7 @@ ol.priority-contain > li {
 	padding-right: 50px;
 }
 .main {
-	padding-right: 1.5em;
+	padding-right: 5em !important;
 }
 h3.contrib, p.contrib-txt, p.photo-cred {
 	text-align: center;
@@ -127,9 +136,22 @@ h3.contrib, p.contrib-txt, p.photo-cred {
 p.contrib-txt {
 	margin-bottom: 3em;
 }
-h2.name {
+h2.name, h2.select {
 	font-size: 2.5em;
 	margin-bottom: 0 !important;
+}
+.select, .sel-cand {
+	text-align: center;
+}
+h2.select {
+	color: #cc5527;
+	font-style: italic;
+}
+h4.sel-cand {
+	font-size: 1.75em;
+}
+h4.sel-cand:last-of-type {
+	margin-bottom: 1.5em;
 }
 h3.occupation {
 	margin-top: .5em !important;
@@ -143,6 +165,7 @@ h3.occupation {
 	padding-top: 0;
 }
 img.candidate-img {
+	background-color: #a0a0a0;
 	display: block;
 	border-radius: 50%;
 	width: 17.5em;
@@ -194,15 +217,20 @@ text-align: center;
 font-family: Lora;
 }
 @media (max-width: 992px) {
-.container-fluid {
-width: 100%;
-}
-.main {
-	text-align: center;
-}
-ol.priority-contain, .priority {
-	margin-left: inherit;
-	list-style-type: none;
+	.container-fluid {
+		width: 100%;
+	}
+	.main {
+		text-align: center;
+	}
+	ol.priority-contain, .priority {
+		margin-left: inherit;
+		list-style-type: none;
+	}
+	div.main {
+		padding-left: 5em;
+		padding-right: 5em !important;
+	}
 }
 @media (max-width: 540px) {
 .popup {
@@ -210,10 +238,16 @@ min-width: 80%;
 font-size: 1em;
 }
 }
-@media (max-width: 360px) {
+@media (max-width: 375px) {
 .footer {
 font-size: .75em;
 }
+div.main {
+		padding-left: 2em;
+		padding-right: 2em !important;
+	}
+div.main > p.description {
+	text-align: initial;
 }
 div.scrim {
 min-width: 100%;

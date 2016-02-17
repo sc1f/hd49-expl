@@ -35,17 +35,29 @@
 					<h1>HD49: Where They Stand</h1>
 					<h5>By <a href="https://www.dailytexanonline.com/author/forrest-milburn"> Forrest Milburn</a>, <a href="https://www.dailytexanonline.com/author/junyuan-tan">Junyuan Tan</a> and <a href="https://www.dailytexanonline.com/author/miles-hutson">Miles Hutson</a></h5>
 					<div class="fb-contain">
-					<div class="fb-share-button" data-href="http://interactives.dailytexanonline.com/hd49" data-layout="button" style="margin:0 auto;vertical-align:top;"></div>
+					<div class="fb-share-button" data-href="http://dailytexanonline.com/features/hd49" data-layout="button" style="margin:0 auto;vertical-align:top;"></div>
 					<a href="https://twitter.com/share" class="twitter-share-button" data-text="Curious about the House District 49 primary elections? Check out this issues explorer by @thedailytexan">Tweet</a>
 					</div>
-					<p class="intro-article">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam venenatis tellus et mi sollicitudin, a mollis ligula convallis. Proin quis risus non urna cursus accumsan et ullamcorper massa. Aliquam imperdiet tempor velit. Nullam in ligula ultrices sapien tempus tempor. Nulla convallis lorem a mauris lobortis lacinia. Integer vel sagittis sapien, vel tincidunt ante. Aenean et lorem nibh. Pellentesque vel blandit lacus. Integer scelerisque sit amet leo at dignissim. Sed porttitor auctor metus sit amet varius. Etiam varius posuere sem a sodales. Fusce aliquet eget nisi at interdum. Maecenas nunc orci, pulvinar vitae erat sed, volutpat mattis neque. Nulla malesuada erat eu velit congue tempus. Donec non ex ut lorem vestibulum sodales.</p>
+					<p class="intro-article">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam venenatis tellus et mi sollicitudin, a mollis ligula convallis. Proin quis risus non urna cursus accumsan et ullamcorper massa. Aliquam imperdiet tempor velit. Nullam in ligula ultrices sapien tempus tempor. Nulla convallis lorem a mauris lobortis lacinia. Integer vel sagittis sapien, vel tincidunt ante. Aenean et lorem nibh. Pellentesque vel blandit lacus. Integer scelerisque sit amet leo at dignissim. Sed porttitor auctor metus sit amet varius. Etiam varius posuere sem a sodales. Fusce aliquet eget nisi at interdum. Maecenas nunc orci, pulvinar vitae erat sed, volutpat mattis neque. Nulla malesuada erat eu velit congue tempus. Donec non ex ut lorem vestibulum sodales.<br><br>
+
+					Candidates are ordered alphabetically.
+					</p>
 					<!-- Facebook sharing link? -->
   				</div>
   				<div class="col-md-2" aria-label="padding"></div>
   				<hr/>
+  				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<h2 class="select">Select a candidate:</h2>
+					{% for row in s1 %}
+					<h4 class="subhead sel-cand"><a href="#{{ row['id'] }}">{{ row['cand_name'] }}</a></h4>
+					{% endfor %}
+				</div>
+  				<div class="col-md-2"></div>
+  				<hr/>
   				{% for row in s1 %}
-  				<div class="col-md-4 left">
-  					<img src="{{ row['purl'] }}" alt="{{ row['cand_name'] }}" class="candidate-img">
+  				<div class="col-md-4 left" id="{{ row['id'] }}">
+  					<img src="/static/images/{{ row['purl'] }}" onerror="this.style.display='none'" alt="{{ row['cand_name'] }}" class="candidate-img">
   					{% if row['pcred'] != '' %}
   					<p class="photo-cred">Photo: {{ row['pcred'] }}</p>
   					{% endif %}
@@ -77,11 +89,15 @@
   					<h4 class="subhead">Policy Priorities</h4>
   						<ol class="priority-contain">
   							<li class="priority">{{ row['p1'] }}</li>
+  							<hr class="mini"/>
   							<li class="priority">{{ row['p2'] }}</li>
+  							<hr class="mini"/>
   							<li class="priority">{{ row['p3'] }}</li>
   						</ol>
-  					<h4 class="subhead">Endorsed By:</h4>
+  					{% if row['endors'] != ''%}
+  					<h4 class="subhead">Major Endorsements:</h4>
   					<p class="description">{{ row['endors'] }}</p>
+  					{% endif %}
   				</div>
   				<hr/>
   				{% endfor %}

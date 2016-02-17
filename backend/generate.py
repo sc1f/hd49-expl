@@ -10,13 +10,11 @@ def generate():
 
 	freezer = Freezer(app)
 
-	copy = copytext.Copy(settings.copy_sheet_location)
+	copy = copytext.Copy('dataset.xlsx')
 	@freezer.register_generator
-	def candidate_page():
+	def main_page():
 		for sheetName in copy.sheetNames():
-			if sheetName == 'metadata' or sheetName == 'Attribution': continue
-			for row in copy[sheetName]:
-				yield {"candidate_id": row['Candidate Name'].unescape().replace(" ", "_").replace("/", "_")}
+			if sheetName == 's1' : continue
 				
 	freezer.freeze()
 
