@@ -1,5 +1,4 @@
 /* one day simba this styleshhet will be beautiful and well-commented BUT IT ISN'T TODAY */
-
 /*------------------------------------*\
 #RESET
 \*------------------------------------*/
@@ -16,12 +15,12 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+margin: 0;
+padding: 0;
+border: 0;
+font-size: 100%;
+font: inherit;
+vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -56,8 +55,8 @@ overflow: auto;
 #GLOBALS
 \*------------------------------------*/
 html, body {
-	max-width: 100%;
-    overflow-x: hidden;
+max-width: 100%;
+overflow-x: hidden;
 }
 html {
 position: relative;
@@ -67,124 +66,128 @@ body {
 font-family: Lora, serif !important;
 }
 hr {
-   display: block;
-   position: relative;
-   padding: 0;
-   margin: 8px auto;
-   height: 0;
-   width: 100%;
-   max-height: 0;
-   font-size: 1px;
-   line-height: 0;
-   clear: both;
-   border: none;
-   border-top: 1px solid #aaaaaa;
-   border-bottom: 1px solid #ffffff;
+display: block;
+position: relative;
+padding: 0;
+margin: 8px auto;
+height: 0;
+width: 100%;
+max-height: 0;
+font-size: 1px;
+line-height: 0;
+clear: both;
+border: none;
+border-top: 1px solid #aaaaaa;
+border-bottom: 1px solid #ffffff;
 }
 hr.mini {
-	width: 50%;
+width: 50%;
 }
 p, li {
-	font-family: Roboto, Helvetica, Arial, sans-serif;
+font-family: Roboto, Helvetica, Arial, sans-serif;
 }
 div.fb-contain {
-	margin: auto;
-	margin-bottom: .75em;
-	position: relative;
-	left: 10%;
+margin: auto;
+margin-bottom: .75em;
+position: relative;
+left: 10%;
 }
 .priority {
-	list-style-type: decimal;
+list-style-type: decimal;
 }
-.twitter-share-button[style] { 
-	vertical-align: top !important; 
+.twitter-share-button[style] {
+vertical-align: top !important;
 }
 .intro > h1{
-	font-size: 4.5em !important;
-	text-align: center;
+font-size: 4.5em !important;
+text-align: center;
 }
 .intro-article {
-	margin-bottom: 3em !important;
+margin-bottom: 3em !important;
 }
 .link {
-	text-align: center;
+text-align: center;
 }
 ol.priority-contain {
-	margin-left: 1em;
-	font-size: 1.25em;
+margin-left: 1em;
+font-size: 1.25em;
 }
 ol.priority-contain > li {
-	font-family: Lora;
-	font-style: italic;
+font-family: Lora;
+font-style: italic;
 }
 .intro > p, .intro > h5 {
-	width: 80%;
-	margin: auto;
-	margin-bottom: 1em;
+width: 80%;
+margin: auto;
+margin-bottom: 1em;
 }
 .left, .main {
-	padding-top: 1em;
-	padding-left: 50px;
-	padding-right: 50px;
+padding-top: 1em;
+padding-left: 50px;
+padding-right: 50px;
+}
+.subhead {
+text-decoration: underline;
 }
 .main {
-	padding-right: 5em !important;
+padding-right: 5em !important;
 }
 h3.contrib, p.contrib-txt, p.photo-cred {
-	text-align: center;
+text-align: center;
 }
 p.contrib-txt {
-	margin-bottom: 3em;
+margin-bottom: 3em;
 }
 h2.name, h2.select {
-	font-size: 2.5em;
-	margin-bottom: 0 !important;
+font-size: 2.5em;
+margin-bottom: 0 !important;
 }
 .select, .sel-cand {
-	text-align: center;
+text-align: center;
 }
 h2.select {
-	color: #cc5527;
-	font-style: italic;
+color: #767676;
+font-style: italic;
 }
 h4.sel-cand {
-	font-size: 1.75em;
+font-size: 1.75em;
 }
 h4.sel-cand:last-of-type {
-	margin-bottom: 1.5em;
+margin-bottom: 1.5em;
 }
 h3.occupation {
-	margin-top: .5em !important;
-	font-style: italic;
+margin-top: .5em !important;
+font-style: italic;
+margin-bottom: .5em !important;
 }
 .twitter-timeline-rendered {
-	margin: auto !important;
-	text-align: center;
+margin: auto !important;
+text-align: center;
 }
 .main {
-	padding-top: 0;
+padding-top: 0;
 }
 img.candidate-img {
-	background-color: #a0a0a0;
-	display: block;
-	border-radius: 50%;
-	width: 17.5em;
-	height: 17.5em;
-	position: relative;
-	margin: auto;
-	margin-bottom: 1em;
+background-color: #a0a0a0;
+display: block;
+border-radius: 50%;
+width: 17.5em;
+height: 17.5em;
+position: relative;
+margin: auto;
+margin-bottom: 1em;
 }
 .table{
-    display:table;
-    height: 100%;
-    width: auto !important;
+display:table;
+height: 100%;
+width: auto !important;
 }
 div.timeline {
-	margin: auto !important;
-} 
+margin: auto !important;
+}
 .table-cell{
-    display:table-cell;
-    vertical-align: middle;
+display:table-cell;
+vertical-align: middle;
 }
 .footer-txt {
 -webkit-margin-after: 0;
@@ -217,25 +220,34 @@ text-align: center;
 font-family: Lora;
 }
 @media (max-width: 992px) {
-	.container-fluid {
-		width: 100%;
-	}
-	.main {
-		text-align: center;
-	}
-	ol.priority-contain, .priority {
-		margin-left: inherit;
-		list-style-type: none;
-	}
-	div.main {
-		padding-left: 5em;
-		padding-right: 5em !important;
-	}
+.container-fluid {
+width: 100%;
+}
+.main {
+text-align: center;
+}
+ol.priority-contain, .priority {
+margin-left: inherit;
+list-style-type: none;
+}
+div.main {
+padding-left: 5em;
+padding-right: 5em !important;
+}
+.subhead.pri {
+margin-bottom: 1em;
+}
 }
 @media (max-width: 540px) {
 .popup {
 min-width: 80%;
 font-size: 1em;
+}
+.footer-txt {
+font-size: 1.25em;
+}
+.description {
+margin-bottom: 1em;
 }
 }
 @media (max-width: 375px) {
@@ -243,11 +255,11 @@ font-size: 1em;
 font-size: .75em;
 }
 div.main {
-		padding-left: 2em;
-		padding-right: 2em !important;
-	}
+padding-left: 2em;
+padding-right: 2em !important;
+}
 div.main > p.description {
-	text-align: initial;
+text-align: initial;
 }
 div.scrim {
 min-width: 100%;
